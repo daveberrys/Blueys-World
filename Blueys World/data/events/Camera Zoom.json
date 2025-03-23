@@ -1,0 +1,19 @@
+{
+    "params": [
+        {
+            "name": "Zoom Amount",
+            "type": "Float(0, 2, 1, 2)",
+            "defaultValue": 1.00
+        },
+        {
+            "name": "Duration",
+            "type": "Float(0, 64, 1, 2)",
+            "defaultValue": 4.00
+        },
+        {
+            "name": "Ease",
+            "type": "String",
+            "defaultValue": "FlxEase.linear"
+        }
+    ]
+}
