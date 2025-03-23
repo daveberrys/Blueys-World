@@ -1,8 +1,10 @@
 function postCreate() {
+    introLength = 3;
     importScript("data/scripts/BlueyHud.hx"); // Activates the HUD Script
     // importScript("data/scripts/BlueyComboCounter.hx"); // Activates the ComboCounter Script
     importScript("data/scripts/CamFollow.hx"); // Activates the CamFollow Script
     importScript("data/scripts/SmoothHealthbar.hx"); // Activates the SmoothHealthbar Script
+    importScript("data/scripts/BlackFade.hx");
 }
 
 function onDadHit(event) {

@@ -1,0 +1,14 @@
+{
+    "params": [
+        {
+            "name": "Duration",
+            "type": "Float(0, 99, 1, 2)",
+            "defaultValue": 0.00
+        },
+        {
+            "name": "On/Off",
+            "type": "String",
+            "defaultValue": "On"
+        }
+    ]
+}
