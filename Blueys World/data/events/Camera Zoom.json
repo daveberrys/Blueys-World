@@ -8,12 +8,12 @@
         {
             "name": "Duration (Beat)",
             "type": "Float(0, 64, 1, 2)",
-            "defaultValue": 4.00
+            "defaultValue": 1
         },
         {
             "name": "Ease",
             "type": "String",
-            "defaultValue": "linear"
+            "defaultValue": "expoOut"
         }
     ]
 }
