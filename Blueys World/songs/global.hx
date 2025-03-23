@@ -1,5 +1,5 @@
 function create()
-    introLength = 3;
+    introLength = 5;
 
 function postCreate() {
     importScript("data/scripts/BlueyHud.hx");
