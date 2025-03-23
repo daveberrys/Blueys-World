@@ -1,10 +1,15 @@
+import flixel.addons.display.FlxBackdrop;
+import flixel.addons.display.FlxGridOverlay;
+
 var meidk:Bool = false;
+var grid:FlxBackdrop;
 
 function update(elapsed:Float)
 {
     if (!meidk)
     {
         if (controls.ACCEPT) { 
+            magenta.color = 0xFF419FFF;
             meidk = true;
             for (i => button in menuItems.members)
             {
@@ -24,4 +29,11 @@ function update(elapsed:Float)
             }
         }
     }
+}
+
+function postCreate() {
+    
+    grid = new FlxBackdrop(FlxGridOverlay.createGrid(40, 40, 80, 80, true, 0x775419FFF, 0x335419FFF));
+    grid.velocity.set(40, 40);
+    insert(3, grid);
 }
