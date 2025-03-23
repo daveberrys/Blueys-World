@@ -1,10 +1,11 @@
 var cameraZoom:FlxTween;
 
+// thank anammar for code :3
 function onEvent(e) {
     if (e.event.name == "Camera Zoom") {
         if (cameraZoom != null) cameraZoom.cancel();
         var params:Array = e.event.params;
-        cameraZoom = FlxTween.tween(camGame, {zoom: params[0]}, params[1], {ease: getTweenEaseByString(params[2])});
+        cameraZoom = FlxTween.tween(camGame, {zoom: params[0]}, params[1] * Conductor.crochet * 0.001, {ease: getTweenEaseByString(params[2])});
     }
 }
 

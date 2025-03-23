@@ -6,7 +6,7 @@
             "defaultValue": 1.00
         },
         {
-            "name": "Duration",
+            "name": "Duration (Beat)",
             "type": "Float(0, 64, 1, 2)",
             "defaultValue": 4.00
         },
