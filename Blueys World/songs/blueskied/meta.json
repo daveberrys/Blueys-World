@@ -1,0 +1,17 @@
+{
+	"beatsPerMeasure": 4,
+	"opponentModeAllowed": false,
+	"coopAllowed": false,
+	"stepsPerBeat": 4,
+	"bpm": 163,
+	"difficulties": [
+		"Blue"
+	],
+	"needsVoices": true,
+	"parsedColor": -12476417,
+	"displayName": "blueskied",
+	"icon": "bluey",
+	"name": "blueskied",
+	"color": "#419FFF",
+	"customValues": {}
+}

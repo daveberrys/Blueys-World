@@ -1,0 +1,8 @@
+<!DOCTYPE codename-engine-character>
+<character y="250" sprite="bluey" icon="bluey" color="#87C9FB" gameOverChar="bluey" holdTime="6.1">
+	<anim name="idle" anim="bluey idle" x="0" y="0" fps="24" loop="false"/>
+	<anim name="singUP" anim="blueyup" x="-52" y="-35" fps="24" loop="false"/>
+	<anim name="singLEFT" anim="blueyleft" x="-23" y="-50" fps="24" loop="false"/>
+	<anim name="singRIGHT" anim="blueyright" x="-57" y="-54" fps="24" loop="false"/>
+	<anim name="singDOWN" anim="blueydown" x="-15" y="-79" fps="24" loop="false"/>
+</character>

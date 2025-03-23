@@ -1,0 +1,17 @@
+{
+	"beatsPerMeasure": 4,
+	"opponentModeAllowed": false,
+	"coopAllowed": false,
+	"stepsPerBeat": 4,
+	"bpm": 185,
+	"difficulties": [
+		"Blue"
+	],
+	"needsVoices": false,
+	"parsedColor": -6379336,
+	"displayName": "Double Duo",
+	"icon": "blueybingo",
+	"name": "double duo",
+	"color": "#9EA8B8",
+	"customValues": {}
+}
