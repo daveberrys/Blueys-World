@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="menubluey.png">
+<SubTexture name="menubluey idle0000" x="0" y="446" width="428" height="423" frameX="-4" frameY="-75" frameWidth="623" frameHeight="498" />
+<SubTexture name="menubluey idle0001" x="835" y="0" width="417" height="439" frameX="-6" frameY="-58" frameWidth="623" frameHeight="498" />
+<SubTexture name="menubluey idle0002" x="417" y="0" width="418" height="444" frameX="-3" frameY="-54" frameWidth="623" frameHeight="498" />
+<SubTexture name="menubluey idle0003" x="0" y="0" width="417" height="446" frameX="-3" frameY="-52" frameWidth="623" frameHeight="498" />
+<SubTexture name="menubluey idle0004" x="0" y="0" width="417" height="446" frameX="-3" frameY="-52" frameWidth="623" frameHeight="498" />
+</TextureAtlas>

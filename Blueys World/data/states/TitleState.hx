@@ -1,6 +1,7 @@
 import flixel.addons.display.FlxBackdrop;
 import flixel.addons.display.FlxGridOverlay;
 
+var ok:Bool = true;
 var grid:FlxBackdrop;
 var titlebg:FlxSprite;
 var titlebluey:FlxSprite;
@@ -26,6 +27,16 @@ function postCreate() {
     grid = new FlxBackdrop(FlxGridOverlay.createGrid(40, 40, 80, 80, true, 0x77FFFFFF, 0x335419FFF));
     grid.velocity.set(40, 40);
     insert(2, grid);
+}
+
+function update(elapsed:Float) {
+    if (transitioning && ok){
+        FlxTween.tween(FlxG.camera, {width:0}, 2, {ease: FlxEase.expoIn});
+        new FlxTimer().start(2, function(tmr:FlxTimer){
+            FlxG.camera.visible = false;
+        });
+        ok = false;
+    }
 }
 
 function beatHit(curBeat) {

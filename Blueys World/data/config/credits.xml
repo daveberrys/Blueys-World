@@ -1,7 +1,7 @@
 <menu name="Blueys World" desc="The silly people :3">
     <credit name="Coders and Visual Art" desc=" "/>
-    <credit name="Daveberry" desc='Visual Art For "Double Duo", Coded the HUD, Coded Custom States (Menus)' icon="davebery" size="130" url="https://daveberry.netlify.app" portrait="false"/>
-    <credit name="BaranMuzu" desc='Visual Art for "Blueskied , Coded the Smooth Camera, Note Skin Change' icon="baranmuzu" size="130" url="https://www.youtube.com/@BaranMuzu" portrait="false"/>
+    <credit name="Daveberry" desc='Visual Art For "Double Duo", Coded the HUD, Coded The Smooth Healthbar' icon="davebery" size="130" url="https://daveberry.netlify.app" portrait="false"/>
+    <credit name="BaranMuzu" desc='Visual Art for "Blueskied , Coded the Smooth Camera, Note Skin Change, Coded Custom MainMenuState/TitleState' icon="baranmuzu" size="130" url="https://www.youtube.com/@BaranMuzu" portrait="false"/>
 
     <credit name="Composers" desc=" "/>
     <credit name="Kaira Flux" desc='Composed "Double Duo"' icon="kairaflux" size="130" url="https://www.youtube.com/@dinus_game" portrait="false"/>
