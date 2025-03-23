@@ -13,7 +13,7 @@
         {
             "name": "Ease",
             "type": "String",
-            "defaultValue": "FlxEase.linear"
+            "defaultValue": "linear"
         }
     ]
 }
