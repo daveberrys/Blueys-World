@@ -1,17 +1,21 @@
 {
-	"beatsPerMeasure": 4,
 	"opponentModeAllowed": false,
-	"coopAllowed": false,
-	"stepsPerBeat": 4,
-	"bpm": 185,
+	"icon": "blueybingo",
 	"difficulties": [
 		"Blue"
 	],
-	"needsVoices": false,
 	"parsedColor": -6379336,
-	"displayName": "Double Duo",
-	"icon": "blueybingo",
-	"name": "double duo",
+	"customValues": {
+		"composed": "Kaira Flux",
+		"visuals": "Daveberry",
+		"charted": "Kaira Flux"
+	},
 	"color": "#9EA8B8",
-	"customValues": {}
+	"name": "double duo",
+	"coopAllowed": false,
+	"stepsPerBeat": 4,
+	"displayName": "Double Duo",
+	"beatsPerMeasure": 4,
+	"needsVoices": false,
+	"bpm": 185
 }

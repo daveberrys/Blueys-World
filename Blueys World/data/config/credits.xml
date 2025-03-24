@@ -1,7 +1,12 @@
-<menu name="Bluey's World!" desc="Select this to see all the people who made Bluey's World Mod!">
+<menu name="Blueys World!" desc="Select this to see all the people who made Bluey's World Mod!">
+    <credit name="Main Devs" desc=' '/>
     <credit name="Daveberry" desc='Visual Art For "Double Duo", Coded the HUD, Coded The Smooth Healthbar, Charted "Blueskied", Designing Menus and Drew Menu Art' icon="davebery" size="130" url="https://daveberry.netlify.app" portrait="false"/>
     <credit name="BaranMuzu" desc='Visual Art for "Blueskied , Coded the Smooth Camera, Note Skin Change, Coded Custom MainMenuState/TitleState' icon="baranmuzu" size="130" url="https://www.youtube.com/@BaranMuzu" portrait="false"/>
     <credit name="Kaira Flux" desc='Composed "Double Duo", Charted "Double Duo"' icon="kairaflux" size="130" url="https://www.youtube.com/@dinus_game" portrait="false"/>
     <credit name="SomeGuy" desc='Composed "Blueskied"' icon="someguy" size="130" url="https://www.youtube.com/channel/UC5l3zg7-CnL3t1cfZDlzZmw" portrait="false"/>
     <credit name="idoxd" desc='Drew Bluey, Bingo and Background Sprites' icon="idoxd" size="130" url="https://linktr.ee/idiotxd" portrait="false"/>
+
+    <menu name="Special Thanks" desc="To the people who helped !">
+        <credit name="VideoBot" desc='Optimizing "SongNames.hx"' icon="specialthank/videobot" size="130" url="https://linktr.ee/videobot" portrait="false"/>
+    </menu>
 </menu>

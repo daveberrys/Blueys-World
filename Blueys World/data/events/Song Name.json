@@ -1,0 +1,9 @@
+{
+    "params": [
+        {
+            "name": "Appear Here",
+            "type": "Bool",
+            "defaultValue": true
+        }
+    ]
+}

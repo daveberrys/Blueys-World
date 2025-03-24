@@ -1,0 +1,4 @@
+<menu name="Blueys World Options" desc="Modify the Gameplay of Bluey's world Mod!">
+    <checkbox id="blueysWorldBlackFade" name="Black Fade" desc="If disabled, this will remove the black fade!"/>
+    <checkbox id="blueysWorldFollowDirectionCam" name="Follow Direction Cam" desc="If disabled, there will be no movement of the direction on where the dad or bf hits."/>
+</menu>

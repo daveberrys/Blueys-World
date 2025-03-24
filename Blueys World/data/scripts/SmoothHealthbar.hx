@@ -1,5 +1,5 @@
 // hi, smooth healthbar was made by daveberry, please credit :3 ( daveberry.netlify.app )
-// I know i could've done a better way of doing a smooth healthbar, but leave me alone bro :sob:
+// I know i could've done a better way of doing a smooth healthbar, but let me feel proud since this is my first time using haxe :catfakyou:
 
 // You can change these!
 var fakeIconBop:Bool = true;
