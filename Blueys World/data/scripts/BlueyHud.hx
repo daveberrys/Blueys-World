@@ -37,6 +37,17 @@ function postCreate() {
     accuracyText.camera = camHUD;
     add(accuracyText);
 
+    if (downscroll) {
+        missText.y = 570;
+        scoreText.y = 600;
+        accuracyText.y = 540;
+    }
+    else {
+        missText.y = 570;
+        scoreText.y = 600;
+        accuracyText.y = 540;
+    }
+
     // hides CNE hud because i ca-
     scoreTxt.visible = false;
     missesTxt.visible = false;
