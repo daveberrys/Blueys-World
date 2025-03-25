@@ -22,8 +22,7 @@ function onStrumCreation(e) {
 
 function postCreate() { 
     for (strum in bingonotes.members) {
-        FlxTween.tween(strum, {x: strum.x - 640}, 0.5, {ease: FlxEase.quadInOut});
-        
+        FlxTween.tween(strum, {x: strum.x - 640}, 0.01);
     }
 }
 
