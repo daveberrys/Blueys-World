@@ -2,9 +2,9 @@ import flixel.text.FlxTextAlign;
 import flixel.text.FlxTextBorderStyle;
 import flixel.math.FlxMath;
 
-var scoreText:FunkinText;
-var missText:FunkinText;
-var accuracyText:FunkinText;
+public var scoreText:FunkinText;
+public var missText:FunkinText;
+public var accuracyText:FunkinText;
 
 var goBackScoreTween:FlxTween;
 var goBackAccuracyTween:FlxTween;

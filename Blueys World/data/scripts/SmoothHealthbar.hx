@@ -9,8 +9,11 @@ var fakeIconDuration:Int = 0.5;
 var fakeWinningIcon:Bool = true;
 
 // From this point on, do not change anything here unless you know what you're doing !
-var fakeIconOpponent:FlxSprite;
-var fakeIconPlayer:FlxSprite;
+public var fakeIconOpponent:FlxSprite;
+public var fakeIconPlayer:FlxSprite;
+
+public var varFakeIconOpponent:String = dad.icon;
+public var varFakeIconPlayer:String = boyfriend.icon;
 
 var fakeIconOpponentMath:FlxMath;
 var fakeIconPlayerMath:FlxMath;
@@ -28,12 +31,12 @@ function postCreate() {
     iconP1.visible = false;
     iconP2.visible = false;
 
-    fakeIconOpponent = new FlxSprite(iconP2.x, iconP2.y).loadGraphic(Paths.image("icons/fakeicon/" + dad.icon));
+    fakeIconOpponent = new FlxSprite(iconP2.x, iconP2.y).loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconOpponent));
     fakeIconOpponent.camera = camHUD;
     fakeIconOpponent.antialiasing = true;
     add(fakeIconOpponent);
 
-    fakeIconPlayer = new FlxSprite(iconP1.x, iconP1.y).loadGraphic(Paths.image("icons/fakeicon/" + boyfriend.icon));
+    fakeIconPlayer = new FlxSprite(iconP1.x, iconP1.y).loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconPlayer));
     fakeIconPlayer.camera = camHUD;
     fakeIconPlayer.antialiasing = true;
     fakeIconPlayer.flipX = true;
@@ -79,19 +82,19 @@ function postUpdate(elapsed:Float) {
 
     // DAD
     if (health > 1.5) {
-        fakeIconOpponent.loadGraphic(Paths.image("icons/fakeicon/" + dad.icon + "-losing"));
+        fakeIconOpponent.loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconOpponent + "-losing"));
         if (fakeWinningIcon)
-            fakeIconPlayer.loadGraphic(Paths.image("icons/fakeicon/" + boyfriend.icon + "-winning"));
+            fakeIconPlayer.loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconPlayer + "-winning"));
     }
     else if (health < 1.5 && health > 0.5)
-        fakeIconOpponent.loadGraphic(Paths.image("icons/fakeicon/" + dad.icon));
+        fakeIconOpponent.loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconOpponent));
 
     // BF
     if (health < 0.5) {
-        fakeIconPlayer.loadGraphic(Paths.image("icons/fakeicon/" + boyfriend.icon + "-losing"));
+        fakeIconPlayer.loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconPlayer + "-losing"));
         if (fakeWinningIcon)
-            fakeIconOpponent.loadGraphic(Paths.image("icons/fakeicon/" + dad.icon + "-winning"));
+            fakeIconOpponent.loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconOpponent + "-winning"));
     }
     else if (health > 0.5 && health < 1.5)
-        fakeIconPlayer.loadGraphic(Paths.image("icons/fakeicon/" + boyfriend.icon));
+        fakeIconPlayer.loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconPlayer));
 }

@@ -1,0 +1,19 @@
+{
+    "params": [
+        {
+            "name": "BF or Dad?",
+            "type": "DropDown('boyfriend', 'dad')",
+            "defaultValue": "dad"
+        },
+        {
+            "name": "Change to... (File must be in \"icons/fakeicon\"!)",
+            "type": "String",
+            "defaultValue": ""
+        },
+        {
+            "name": "Health Bar Color",
+            "type": "ColorWheel",
+            "defaultValue": "#FFFFFF"
+        }
+    ]
+}

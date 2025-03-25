@@ -1,8 +1,5 @@
 var blueysWorldFollowDirectionCam = FlxG.save.data.blueysWorldFollowDirectionCam;
 
-function create()
-    introLength = 5;
-
 function postCreate() {
     // SKRIPTS
     importScript("data/scripts/BlueyHud.hx");
