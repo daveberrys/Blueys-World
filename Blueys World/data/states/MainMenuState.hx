@@ -28,6 +28,7 @@ function update(elapsed:Float)
                 }
             }
         }
+        if (FlxG.keys.justPressed.B) FlxG.switchState(new ModState("BinguState"));
     }
 }
 
