@@ -8,10 +8,6 @@ function postCreate() {
         importScript("data/scripts/CamFollow.hx");
     importScript("data/scripts/SmoothHealthbar.hx");
     importScript("data/scripts/SongNames.hx");
-
-    // EVENTS
-    importScript("data/events/Camera Zoom.hx");
-    importScript("data/events/Black Fade.hx");
 }
 
 function onDadHit(event) {

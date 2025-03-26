@@ -1,0 +1,24 @@
+{
+    "params": [
+        {
+            "name": "Strum Line",
+            "type": "Int(0, 4, 1)",
+            "defaultValue": "0"
+        },
+        {
+            "name": "Alpha",
+            "type": "Float(0, 1, 1, 2)",
+            "defaultValue": "1"
+        },
+        {
+            "name": "Duration (Beat)",
+            "type": "Int(0.01, 100, 1)",
+            "defaultValue": "1"
+        },
+        {
+            "name": "Ease",
+            "type": "String",
+            "defaultValue": "expoOut"
+        }
+    ]
+}
