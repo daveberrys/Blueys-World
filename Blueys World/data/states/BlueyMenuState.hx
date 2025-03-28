@@ -42,6 +42,10 @@ var settingsHoverH:FlxTween; // height
 var creditsHoverW:FlxTween; // width
 var creditsHoverH:FlxTween; // height
 
+// MOBILE ?!??!
+var mKey:FlxSprite;
+var eKey:FlxSprite;
+
 function postCreate() {
 	FlxG.mouse.visible = true;
 
@@ -105,6 +109,28 @@ function postCreate() {
 		credits.x -= 350;
 		credits.y -= 100;
 	}
+
+	#if mobile
+	// MOBILE KEYS ?!?!?!
+	// MAKING SPRITE
+	mKey = new FlxSprite(0, 0).loadGraphic(Paths.image("mobile/virtualpad/m"));
+	mKey.alpha = 0.5; 
+	mKey.color = 0xFF419FFF;
+	add(mKey);
+
+	eKey = new FlxSprite(0, 0).loadGraphic(Paths.image("mobile/virtualpad/e"));
+	eKey.alpha = 0.5; 
+	eKey.color = 0xFFFF8F00;
+	add(eKey);
+
+	//POSITIONING
+	mKey.screenCenter();
+	mKey.y += 720 / 2 - 70; //crazy math, i know :3c
+	mKey.x -= 75;
+
+	eKey.x = mKey.x + 132 + 5;
+	eKey.y = mKey.y;
+	#end
 }
 
 function update(elapsed:Float) {
@@ -125,6 +151,7 @@ function update(elapsed:Float) {
 	if (!selectedSomething) {
 		mouseHover();
 		if (curSelect != 0) mouseConfirm();
+		#if mobile mobileControls(); #end
 	}
 }
 
@@ -261,4 +288,41 @@ function mouseConfirm() {
 		FlxTween.tween(settings, {y: settings.y + 720}, 2, {ease: FlxEase.expoInOut, startDelay: 0.15});
 		FlxTween.tween(credits, {y: credits.y + 720}, 2, {ease: FlxEase.expoInOut, startDelay: 0.2});
     }
+}
+
+function mobileControls() {
+	var mKeyX = mKey.x;
+	var mKeyY = mKey.y;
+	var mKeyWidth = mKey.width;
+	var mKeyHeight = mKey.height;
+
+    var eKeyX = eKey.x;
+	var eKeyY = eKey.y;
+	var eKeyWidth = eKey.width;
+	var eKeyHeight = eKey.height;
+
+	var mouseX = FlxG.mouse.x;
+	var mouseY = FlxG.mouse.y;
+
+	mKey.loadGraphic(Paths.image("mobile/virtualpad/m"));
+	eKey.loadGraphic(Paths.image("mobile/virtualpad/e"));
+
+	if (FlxG.mouse.pressed) {
+		if (mouseX > mKeyX && mouseX < mKeyX + mKeyWidth &&
+			mouseY > mKeyY && mouseY < mKeyY + mKeyHeight) {
+			openSubState(new ModSwitchMenu());
+			persistentUpdate = false;
+			persistentDraw = true;
+
+			mKey.loadGraphic(Paths.image("mobile/virtualpad/mP"));
+		}
+		if (mouseX > eKeyX && mouseX < eKeyX + eKeyWidth &&
+			mouseY > eKeyY && mouseY < eKeyY + eKeyHeight) {
+			persistentUpdate = false;
+			persistentDraw = true;
+			openSubState(new EditorPicker());
+
+			eKey.loadGraphic(Paths.image("mobile/virtualpad/eP"));
+		}
+	}
 }
