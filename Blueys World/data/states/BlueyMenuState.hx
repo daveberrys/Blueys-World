@@ -124,7 +124,7 @@ function update(elapsed:Float) {
 
 	if (!selectedSomething) {
 		mouseHover();
-		mouseConfirm();
+		if (curSelect != 0) mouseConfirm();
 	}
 }
 
