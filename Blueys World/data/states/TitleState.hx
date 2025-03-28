@@ -7,8 +7,8 @@ var grid:FlxBackdrop;
 var titleBg:FlxSprite;
 var titleBluey:FlxSprite;
 var titleLogo:FlxSprite;
-var titleLogoTween:FlxTween;
 var titleText:FlxSprite;
+var titleLogoTween:FlxTween;
 var titleTextTween:FlxTween;
 var titleBlueyTween:FlxTween;
 
