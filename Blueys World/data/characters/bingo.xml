@@ -1,0 +1,9 @@
+<!DOCTYPE codename-engine-character>
+<character y="325" sprite="bingo" icon="bingo" color="#87C9FB" gameOverChar="bingo" holdTime="6.1">
+	<anim name="idle" anim="idle" x="0" y="0" fps="24" loop="false"/>
+	<anim name="singUP" anim="up" x="-50" y="30" fps="24" loop="false"/>
+	<anim name="singDOWN" anim="down" x="-30" y="-10" fps="24" loop="false"/>
+	<anim name="singLEFT" anim="left" x="-15" y="-5" fps="24" loop="false"/>
+	<anim name="singRIGHT" anim="right" x="-5" y="0" fps="24" loop="false"/>
+	<anim name="Bingus Appear" anim="Bing" x="-6" y="12" fps="24" loop="false"/>
+</character>
