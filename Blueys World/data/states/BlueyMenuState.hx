@@ -72,9 +72,9 @@ function postCreate() {
 	insert(4, versionText);
 
 	selectingString = new FunkinText((1280/2)-(500/2), 50, 500, whatYoureSelecting);
-	selectingString.setFormat(Paths.font("bluey.ttf"), 40, 0xFF419FFF, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
+	selectingString.setFormat(Paths.font("bluey.ttf"), 40, 0xFFFFFFFF, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
 	selectingString.antialiasing = true;
-	selectingString.borderSize = 69; // WHATTT IT LOOK COOL !!!!!!!!!
+	selectingString.borderSize = 2;
 	insert(6, selectingString);
 
 	if (MakeButtons) {
