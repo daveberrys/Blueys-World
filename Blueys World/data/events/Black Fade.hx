@@ -1,11 +1,9 @@
-var blueysWorldBlackFade = FlxG.save.data.blueysWorldBlackFade;
 var blackOther:FlxSprite;
 
 function postCreate() {
     blackOther = new FlxSprite().makeSolid(FlxG.width, FlxG.height, 0xFF000000);
     blackOther.camera = camHUD;
-    if (blueysWorldBlackFade)
-        add(blackOther);
+    add(blackOther);
 }
 
 function onSongStart() {
