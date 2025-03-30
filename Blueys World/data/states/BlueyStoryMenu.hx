@@ -11,14 +11,19 @@ var tree:FlxSprite;
 
 // THE USER INTERFACE
 var blackDots:FlxBackdrop;
+var blackDots2:FlxBackdrop;
 var weekBluey:FlxSprite;
 var weekBlueySHADOW:FlxSprite;
 var play:FlxSprite;
 var storyText:FunkinText;
 
+var playHoverH:FlxTween;
+var playHoverW:FlxTween;
+
 // the other boring stuff
 var zoomCameraBeat:FlxTween;
 var selectSomething:Bool = false;
+var LH:FlxTween;
 
 function postCreate() {
     sky = new FlxBackdrop().loadGraphic(Paths.image("menus/storymenu/BG/sky"));
@@ -32,10 +37,11 @@ function postCreate() {
     insert(3, housething);
 
     grass = new FlxSprite().loadGraphic(Paths.image("menus/storymenu/BG/grass"));
+    grass.scale.set(0.2, 0.2);
     insert(3, grass);
 
     tree = new FlxSprite().loadGraphic(Paths.image("menus/storymenu/BG/tree"));
-    tree.scale.set(0.85, 0.85);
+    tree.scale.set(1, 1);
     insert(4, tree);
 
     // POSITIONING
@@ -44,20 +50,24 @@ function postCreate() {
     bushes.x += 75;
     bushes.y += 150;
 
-    housething.x -= 15;
-    housething.y += 150;
+    housething.x -= 30;
+    housething.y += 250;
 
-    grass.x += 225;
-    grass.y += 200;
+    grass.x -= 3250; // THE GRASS IS TOO BIGG
+    grass.y -= 1100;
 
     tree.x -= 175;
-    tree.y -= 150;
+    tree.y -= 100;
 
     // USER INTERFACE! (this what make it cool i think)
     blackDots = new FlxBackdrop().loadGraphic(Paths.image('menus/storymenu/blackDots'));
 	blackDots.velocity.set(40, 0);
-    blackDots.alpha = 0.5;
 	add(blackDots);
+
+    blackDots2 = new FlxBackdrop().loadGraphic(Paths.image('menus/storymenu/blackDots'));
+	blackDots2.velocity.set(-40, 0);
+    blackDots2.angle -= 180;
+	add(blackDots2);
 
     weekBlueySHADOW = new FlxSprite().loadGraphic(Paths.image("menus/storymenu/weekbluey"));
     weekBlueySHADOW.color = 0xFF000000;
@@ -77,7 +87,7 @@ function postCreate() {
 
     LH = new FlxSprite(0, 0).loadGraphic(Paths.image("menus/LineHelper"));
     LH.scale.set(1, 1);
-    add(LH);
+    //add(LH);
 
     // POSITIONINING  USER INTERFACE
     weekBluey.x += 25;
@@ -97,7 +107,7 @@ function update(elapsed:Float) {
 		FlxG.switchState(new ModState("BlueyMenuState"));
 
     if (FlxG.mouse.pressed && !selectSomething) playButton();
-        
+    if (!selectSomething) playHover();
 }
 
 function beatHit(curBeat) {
@@ -138,4 +148,26 @@ function playButton() {
             FlxG.switchState(new PlayState());
         });
 	}
+}
+
+function playHover() {
+    var playX = play.x;
+	var playY = play.y;
+	var playWidth = play.width;
+	var playHeight = play.height;
+
+	var mouseX = FlxG.mouse.x;
+	var mouseY = FlxG.mouse.y;
+
+    if (playHoverH != null) playHoverH.cancel();
+    if (playHoverW != null) playHoverW.cancel();
+
+    if (mouseX > playX && mouseX < playX + playWidth &&
+		mouseY > playY && mouseY < playY + playHeight) {
+        playHoverH = FlxTween.tween(play, {"scale.x": 0.5 + 0.1}, 0.1);
+        playHoverW = FlxTween.tween(play, {"scale.y": 0.5 + 0.1}, 0.1);
+	} else {
+        playHoverH = FlxTween.tween(play, {"scale.x": 0.5}, 0.1);
+        playHoverW = FlxTween.tween(play, {"scale.y": 0.5}, 0.1); 
+    }
 }
