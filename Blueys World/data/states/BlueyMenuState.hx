@@ -56,11 +56,11 @@ function postCreate() {
 	grid.velocity.set(40, 40);
 	insert(2, grid);
 
-	blackDots = new FlxBackdrop().loadGraphic(Paths.image('menus/titlescreen/blackDots'));
+	blackDots = new FlxBackdrop().loadGraphic(Paths.image('menus/mainmenu/blackDots'));
 	blackDots.velocity.set(40, 0);
 	insert(3, blackDots);
 
-	blackDots2 = new FlxBackdrop().loadGraphic(Paths.image('menus/titlescreen/blackDots'));
+	blackDots2 = new FlxBackdrop().loadGraphic(Paths.image('menus/mainmenu/blackDots'));
 	blackDots2.angle = 180;
 	blackDots2.velocity.set(-40, 0);
 	insert(3, blackDots2);
@@ -150,8 +150,10 @@ function update(elapsed:Float) {
 
 	if (!selectedSomething) {
 		mouseHover();
-		if (curSelect != 0) mouseConfirm();
-		#if mobile mobileControls(); #end
+		if (curSelect != 0 && FlxG.mouse.pressed) {
+			mouseConfirm();
+			#if mobile mobileControls(); #end
+		}
 	}
 }
 
@@ -263,7 +265,7 @@ function mouseHover() {
 }
 
 function mouseConfirm() {
-	if (MakeButtons && FlxG.mouse.pressed) {
+	if (MakeButtons) {
 		selectedSomething = true;
 		if (zoomCameraBeat != null) zoomCameraBeat.cancel();
 		FlxG.sound.play(Paths.sound("menu/confirm"));
@@ -272,7 +274,7 @@ function mouseConfirm() {
         new FlxTimer().start(2, function(tmr:FlxTimer){
             FlxG.camera.visible = false;
 			if (curSelect == 1)
-				FlxG.switchState(new StoryMenuState());
+				FlxG.switchState(new ModState("BlueyStoryMenu"));
 			if (curSelect == 2)
 				FlxG.switchState(new FreeplayState());
 			if (curSelect == 3)
@@ -281,7 +283,7 @@ function mouseConfirm() {
 				FlxG.switchState(new CreditsMain());
         });
 
-		FlxTween.tween(selectingString, {y: 720/2 - 20}, 2, {ease: FlxEase.expoOut});
+		FlxTween.tween(selectingString, {y: 720/2 - 25}, 2, {ease: FlxEase.expoOut});
 
 		FlxTween.tween(storymode, {y: storymode.y + 720}, 2, {ease: FlxEase.expoInOut, startDelay: 0});
 		FlxTween.tween(freeplay, {y: freeplay.y + 720}, 2, {ease: FlxEase.expoInOut, startDelay: 0.1});
@@ -307,22 +309,20 @@ function mobileControls() {
 	mKey.loadGraphic(Paths.image("mobile/virtualpad/m"));
 	eKey.loadGraphic(Paths.image("mobile/virtualpad/e"));
 
-	if (FlxG.mouse.pressed) {
-		if (mouseX > mKeyX && mouseX < mKeyX + mKeyWidth &&
-			mouseY > mKeyY && mouseY < mKeyY + mKeyHeight) {
-			openSubState(new ModSwitchMenu());
-			persistentUpdate = false;
-			persistentDraw = true;
+	if (mouseX > mKeyX && mouseX < mKeyX + mKeyWidth &&
+		mouseY > mKeyY && mouseY < mKeyY + mKeyHeight) {
+		openSubState(new ModSwitchMenu());
+		persistentUpdate = false;
+		persistentDraw = true;
 
-			mKey.loadGraphic(Paths.image("mobile/virtualpad/mP"));
-		}
-		if (mouseX > eKeyX && mouseX < eKeyX + eKeyWidth &&
-			mouseY > eKeyY && mouseY < eKeyY + eKeyHeight) {
-			persistentUpdate = false;
-			persistentDraw = true;
-			openSubState(new EditorPicker());
+		mKey.loadGraphic(Paths.image("mobile/virtualpad/mP"));
+	}
+	if (mouseX > eKeyX && mouseX < eKeyX + eKeyWidth &&
+		mouseY > eKeyY && mouseY < eKeyY + eKeyHeight) {
+		persistentUpdate = false;
+		persistentDraw = true;
+		openSubState(new EditorPicker());
 
-			eKey.loadGraphic(Paths.image("mobile/virtualpad/eP"));
-		}
+		eKey.loadGraphic(Paths.image("mobile/virtualpad/eP"));
 	}
 }

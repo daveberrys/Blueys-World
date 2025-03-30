@@ -1,3 +1,4 @@
-function postCreate() {
-    weekBG.color = 0xFF5419FFF;
+function postUpdate() {
+    FlxG.camera.visible = false;
+    FlxG.switchState(new ModState("BlueyStoryMenu"));
 }
