@@ -1,3 +1,6 @@
+import flixel.text.FlxTextAlign;
+import flixel.text.FlxTextBorderStyle;
+
 // hi, no moving icon was made by daveberry, please credit :3 ( daveberry.netlify.app )
 // You can change these!
 var fakeIconBop:Bool = true;
@@ -24,6 +27,11 @@ var fakeIconPlayerAlphaTweenH:FlxTween; // HIDE
 var fakeIconOpponentAlphaTweenHT:FlxTimer; // HIDE TIMER
 var fakeIconPlayerAlphaTweenHT:FlxTimer; // HIDE TIMER
 
+// TEXT FROM THIS POINT ON !
+var healthText:FunkinText;
+var healthMath:FlxMath;
+var healthDisplay:Int;
+
 function postCreate() {
 	// Creates the Fake Icon
 	iconP1.visible = false;
@@ -41,6 +49,11 @@ function postCreate() {
 	fakeIconPlayer.antialiasing = true;
 	fakeIconPlayer.flipX = true;
 	add(fakeIconPlayer);
+
+	healthText = new FunkinText(iconP1.x - 75, iconP1.y - 50, 200, "");
+	healthText.setFormat(Paths.font("bluey.ttf"), 30, 0xFFFFFFFF, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
+	healthText.camera = camHUD;
+	add(healthText);
 
 	new FlxTimer().start(0.5, function(tmr:FlxTimer) {
 		fakeIconOpponentAlphaTween = FlxTween.tween(fakeIconOpponent, {alpha: 0.5}, 0.5);
@@ -66,6 +79,10 @@ function beatHit(curBeat:Int) {
 }
 
 function postUpdate(elapsed:Float) {
+	healthDisplay = (health * 50);
+	healthMath = FlxMath.lerp(healthMath, healthDisplay, elapsed * 10);
+	healthText.text = "HP: " + Math.round(healthMath) + "%";
+
 	// DAD
 	if (health > 1.5) {
 		fakeIconOpponent.loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconOpponent + "-losing"));
@@ -79,15 +96,15 @@ function postUpdate(elapsed:Float) {
 		fakeIconPlayer.loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconPlayer + "-losing"));
 		if (fakeWinningIcon)
 			fakeIconOpponent.loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconOpponent + "-winning"));
-	} else if (health > 0.5 && health < 1.5)
+	} else if (health > 0.5 && health < 1.5) {
 		fakeIconPlayer.loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconPlayer));
+	}
 }
 
 function onPlayerHit(e) {
     if (fakeIconPlayerAlphaTweenHT != null) fakeIconPlayerAlphaTweenHT.cancel();
     if (fakeIconPlayerAlphaTweenH != null) fakeIconPlayerAlphaTweenH.cancel();
 
-    if (fakeIconPlayerAlphaTweenH != null) fakeIconPlayerAlphaTweenH.cancel();
 	fakeIconPlayerAlphaTweenA = FlxTween.tween(fakeIconPlayer, {alpha: 1}, 0.5);
 	fakeIconPlayerAlphaTweenHT = new FlxTimer().start(0.5, function(tmr:FlxTimer) {
         if (fakeIconPlayerAlphaTweenA != null) fakeIconPlayerAlphaTweenA.cancel();
