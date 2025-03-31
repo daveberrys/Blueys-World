@@ -4,9 +4,10 @@ import flixel.text.FlxTextBorderStyle;
 // hi, no moving icon was made by daveberry, please credit :3 ( daveberry.netlify.app )
 // You can change these!
 var fakeIconBop:Bool = true;
-var fakeIconBeat:Int = 1;
+var fakeIconScaleWhen:String = "OnHit"; // "OnHit", "OnBeat"
 var fakeIconDuration:Int = 0.5;
 var fakeWinningIcon:Bool = true;
+var fakeIconBeat:Int = 1;
 
 // From this point on, do not change anything here unless you know what you're doing !
 public var fakeIconOpponent:FlxSprite;
@@ -65,7 +66,7 @@ function postCreate() {
 }
 
 function beatHit(curBeat:Int) {
-	if (fakeIconBop && curBeat % fakeIconBeat == 0) {
+	if (fakeIconBop && curBeat % fakeIconBeat == 0 && fakeIconScaleWhen == "OnBeat") {
 		if (scaleDownOnPlayer != null)
 			scaleDownOnPlayer.cancel();
 		if (scaleDownOnOpponent != null)
@@ -102,6 +103,13 @@ function postUpdate(elapsed:Float) {
 }
 
 function onPlayerHit(e) {
+	if (fakeIconScaleWhen == "OnHit" && !e.note.isSustainNote) {
+		if (scaleDownOnPlayer != null)
+			scaleDownOnPlayer.cancel();
+		
+		fakeIconPlayer.scale.set(1.2, 1.2);
+		scaleDownOnPlayer = FlxTween.tween(fakeIconPlayer, {"scale.x": 1, "scale.y": 1}, fakeIconDuration, {ease: FlxEase.expoOut});
+	}
     if (fakeIconPlayerAlphaTweenHT != null) fakeIconPlayerAlphaTweenHT.cancel();
     if (fakeIconPlayerAlphaTweenH != null) fakeIconPlayerAlphaTweenH.cancel();
 
@@ -113,6 +121,13 @@ function onPlayerHit(e) {
 }
 
 function onDadHit(e) {
+	if (fakeIconScaleWhen == "OnHit" && !e.note.isSustainNote) {
+		if (scaleDownOnOpponent != null)
+			scaleDownOnOpponent.cancel();
+
+		fakeIconOpponent.scale.set(1.2, 1.2);
+		scaleDownOnOpponent = FlxTween.tween(fakeIconOpponent, {"scale.x": 1, "scale.y": 1}, fakeIconDuration, {ease: FlxEase.expoOut});
+	}
     if (fakeIconOpponentAlphaTweenHT != null) fakeIconOpponentAlphaTweenHT.cancel();
     if (fakeIconOpponentAlphaTweenH != null) fakeIconOpponentAlphaTweenH.cancel();
     
