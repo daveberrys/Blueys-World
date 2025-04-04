@@ -81,8 +81,7 @@ function beatHit(curBeat:Int) {
 
 function postUpdate(elapsed:Float) {
 	healthDisplay = (health * 50);
-	healthMath = FlxMath.lerp(healthMath, healthDisplay, elapsed * 10);
-	healthText.text = "HP: " + Math.round(healthMath) + "%";
+	healthText.text = "HP: " + Math.round(healthDisplay) + "%";
 
 	// DAD
 	if (health > 1.5) {
