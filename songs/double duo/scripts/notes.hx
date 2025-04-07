@@ -4,18 +4,18 @@ var bingonotes = strumLines.members[2];
 
 function onNoteCreation(e) {
 	if (e.strumLineID == 0)
-		e.noteSprite = "game/notes/bluey";
+		e.noteSprite = "game/notes/Heeler_NOTE";
 	else if (e.strumLineID == 2)
-		e.noteSprite = "game/notes/bingo";
+		e.noteSprite = "game/notes/Heeler_NOTE";
 	else
 		e.noteSprite = "game/notes/default";
 }
 
 function onStrumCreation(e) {
 	if (e.player == 0) {
-		e.sprite = "game/notes/bluey";
+		e.sprite = "game/notes/Heeler_NOTE";
 	} else if (e.player == 2) {
-		e.sprite = "game/notes/bingo";
+		e.sprite = "game/notes/Heeler_NOTE";
 	} else {
 		e.sprite = "game/notes/default";
 	}

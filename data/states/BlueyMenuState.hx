@@ -276,7 +276,7 @@ function mouseConfirm() {
 			if (curSelect == 1)
 				FlxG.switchState(new ModState("BlueyStoryMenu"));
 			if (curSelect == 2)
-				FlxG.switchState(new FreeplayState());
+				FlxG.switchState(new ModState("BlueyFreeplayMenu"));
 			if (curSelect == 3)
 				FlxG.switchState(new OptionsMenu());
 			if (curSelect == 4)
