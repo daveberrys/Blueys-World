@@ -1,9 +1,14 @@
+var scripts:String<Array> = [
+    "BlueyHud",
+    "BlueyComboCounter",
+    "CamFollow",
+    "NoMovingIcon",
+    "SongNames"
+];
+
 function postCreate() {
-    importScript("data/scripts/BlueyHud.hx");
-    importScript("data/scripts/BlueyComboCounter.hx");
-    importScript("data/scripts/CamFollow.hx");
-    importScript("data/scripts/NoMovingIcon.hx");
-    importScript("data/scripts/SongNames.hx");
+    for (script in scripts)
+        importScript("data/scripts/" + script + ".hx");
 }
 
 function onDadHit(event) {

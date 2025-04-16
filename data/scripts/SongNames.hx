@@ -10,6 +10,7 @@ var songNameBG:FlxSprite;
 var songNameBGdropShadow:FlxSprite;
 
 var makeText:Bool = true;
+var showMoreInfo:Bool = false;
 
 function postCreate() {
     var songName = PlayState.SONG.meta.displayName;
@@ -34,6 +35,7 @@ function postCreate() {
     add(songNameBGdropShadow);
 
     songNameBG = new FlxSprite(0, 0).loadGraphic(Paths.image("game/songNameBG"));
+    songNameBG.alpha = 0.75;
     //songNameBG.alpha = 0;
     songNameBG.scale.set(0, 0);
     songNameBG.screenCenter();
@@ -56,6 +58,7 @@ function postCreate() {
             item.alpha = 0;
             item.borderSize = 2;
             item.camera = camHUD;
+            add(item);
         }
         
         songNameText.size = 50;
@@ -63,11 +66,13 @@ function postCreate() {
         composedText.y = songNameText.y - 40;
         chartedText.y = composedText.y - 30;
         visualsText.y = chartedText.y - 30;
-        
-        add(songNameText);
-        add(composedText);
-        add(chartedText);
-        add(visualsText);
+
+        if (!showMoreInfo) {
+            composedText.visible = false;
+            chartedText.visible = false;
+            visualsText.visible = false;
+            songNameText.y = 520 - 50;
+        }
     }
 }
 
@@ -83,7 +88,7 @@ function onEvent(e) {
         FlxTween.tween(chartedText, {x: 140, alpha: 1, angle: 0}, 2, {ease: FlxEase.expoOut, startDelay: 0.5});
         FlxTween.tween(visualsText, {x: 140, alpha: 1, angle: 0}, 2, {ease: FlxEase.expoOut, startDelay: 0.75});
 
-        new FlxTimer().start(5, function(tmr:FlxTimer){
+        new FlxTimer().start(2, function(tmr:FlxTimer){
             trace("Thou \"Song Name\" Shall dissapear here!");
 
             FlxTween.tween(songNameBG, {"scale.x": 0, "scale.y": 0}, 2, {ease: FlxEase.expoIn, startDelay: 0});

@@ -1,7 +1,6 @@
 import flixel.text.FlxTextAlign;
 import flixel.text.FlxTextBorderStyle;
 
-// hi, no moving icon was made by daveberry, please credit :3 ( daveberry.netlify.app )
 // You can change these!
 var fakeIconBop:Bool = true;
 var fakeIconScaleWhen:String = "OnHit"; // "OnHit", "OnBeat"

@@ -59,9 +59,16 @@ function doesFunny() {
     if (returnComboText2 != null) returnComboText2.cancel();
     if (returnComboText3 != null) returnComboText3.cancel();
 
-    comboText.y = 140 + 10;
     comboText.alpha = 1;
-    returnComboText = FlxTween.tween(comboText, {y: 140}, 1, {ease: FlxEase.expoOut});
-    returnComboText2 = FlxTween.tween(comboText, {y: 140 - 100}, 0.5, {ease: FlxEase.expoIn, startDelay: 1});
-    returnComboText3 = FlxTween.tween(comboText, {alpha: 0}, 0.5, {ease: FlxEase.linear, startDelay: 1});
+    if (downscroll) {
+        comboText.y = 140 + 10;
+        returnComboText = FlxTween.tween(comboText, {y: 140}, 1, {ease: FlxEase.expoOut});
+        returnComboText2 = FlxTween.tween(comboText, {y: 140 - 100}, 0.5, {ease: FlxEase.expoIn, startDelay: 1});
+        returnComboText3 = FlxTween.tween(comboText, {alpha: 0}, 0.5, {ease: FlxEase.linear, startDelay: 1});
+    } else {
+        comboText.y = 140 - 10;
+        returnComboText = FlxTween.tween(comboText, {y: 140}, 1, {ease: FlxEase.expoOut});
+        returnComboText2 = FlxTween.tween(comboText, {y: 140 + 100}, 0.5, {ease: FlxEase.expoIn, startDelay: 1});
+        returnComboText3 = FlxTween.tween(comboText, {alpha: 0}, 0.5, {ease: FlxEase.linear, startDelay: 1});
+    }
 }
