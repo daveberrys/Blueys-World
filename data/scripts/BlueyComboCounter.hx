@@ -10,6 +10,8 @@ var noteRating:String;
 var bCombo:Int = 0;
 
 function postCreate() {
+    comboGroup.visible = false;
+
     comboText = new FunkinText(0, 0, 500, "0\nN/A", 40, true);
     comboText.setFormat(Paths.font("bluey.ttf"), 40, 0xFFFFFFFF, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
     comboText.camera = camHUD;
@@ -23,23 +25,31 @@ function postCreate() {
 
 function onPlayerHit(event) {
     if (!event.note.isSustainNote) {
-        if (event.rating == "sick")
+        if (event.rating == "sick") {
             noteRating = "Dollarbucks!";
-        if (event.rating == "good")
+            comboText.color = 0xFF419FFF;
+        }
+        if (event.rating == "good") {
             noteRating = "Woah";
-        if (event.rating == "bad")
+            comboText.color = 0xFF00FF80;
+        }
+        if (event.rating == "bad") {
             noteRating = "Okay";
-        if (event.rating == "shit")
+            comboText.color = 0xFFFFFF6D;
+        }
+        if (event.rating == "shit") {
             noteRating = "Aw biscuits...";
+            comboText.color = 0xFF808080;
+        }
         bCombo += 1;
-        comboText.text = bCombo + "\n" + noteRating;
+        comboText.text = noteRating + "\n" + bCombo;
     }
     doesFunny();
 }
 function onPlayerMiss(event) {
     if (!event.note.isSustainNote) {
         bCombo = 0;
-        comboText.text = bCombo + "\nMissed...";
+        comboText.text = "Missed...\n" + bCombo;
     }
     doesFunny();
 }
@@ -48,9 +58,10 @@ function doesFunny() {
     if (returnComboText != null) returnComboText.cancel();
     if (returnComboText2 != null) returnComboText2.cancel();
     if (returnComboText3 != null) returnComboText3.cancel();
+
     comboText.y = 140 + 10;
     comboText.alpha = 1;
     returnComboText = FlxTween.tween(comboText, {y: 140}, 1, {ease: FlxEase.expoOut});
-    returnComboText2 = FlxTween.tween(comboText, {y: 140 - 100}, 5, {ease: FlxEase.expoOut, startDelay: 2});
-    returnComboText3 = FlxTween.tween(comboText, {alpha: 0}, 0.5, {ease: FlxEase.linear, startDelay: 2});
+    returnComboText2 = FlxTween.tween(comboText, {y: 140 - 100}, 0.5, {ease: FlxEase.expoIn, startDelay: 1});
+    returnComboText3 = FlxTween.tween(comboText, {alpha: 0}, 0.5, {ease: FlxEase.linear, startDelay: 1});
 }

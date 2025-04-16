@@ -16,6 +16,7 @@ var MakeButtons:Bool = true;
 var curSelect:Int = 0;
 var whatYoureSelecting:String = "";
 var selectedSomething:Bool = false;
+public var storyModeIsPlay:Bool = true;
 
 var bg:FlxSprite;
 var grid:FlxBackdrop;
@@ -150,7 +151,7 @@ function update(elapsed:Float) {
 
 	if (!selectedSomething) {
 		mouseHover();
-		if (curSelect != 0 && FlxG.mouse.pressed) {
+		if (curSelect != 0 && FlxG.mouse.justReleased) {
 			mouseConfirm();
 			#if mobile mobileControls(); #end
 		}
@@ -269,12 +270,26 @@ function mouseConfirm() {
 		selectedSomething = true;
 		if (zoomCameraBeat != null) zoomCameraBeat.cancel();
 		FlxG.sound.play(Paths.sound("menu/confirm"));
-
+		if (storyModeIsPlay && curSelect == 1) FlxG.sound.music.fadeOut(2);
         FlxTween.tween(FlxG.camera, {zoom: 10, angle: 180, alpha: 0}, 2, {ease: FlxEase.expoIn});
         new FlxTimer().start(2, function(tmr:FlxTimer){
-            FlxG.camera.visible = false;
-			if (curSelect == 1)
-				FlxG.switchState(new ModState("BlueyStoryMenu"));
+			FlxG.camera.visible = false;
+			if (curSelect == 1) {
+				if (storyModeIsPlay) {
+					PlayState.loadWeek({
+						name: "weekBluey",
+						id: "weekBluey",
+						sprite: null,
+						chars: [null, null, null],
+						songs: [{name: 'blueskied', hide: false},
+								{name: 'double duo', hide: false}],
+						difficulties: ['Blue']
+						}, "Blue");
+					FlxG.switchState(new PlayState());
+				} else {
+					FlxG.switchState(new ModState("BlueyStoryMenu"));
+				}
+			}
 			if (curSelect == 2)
 				FlxG.switchState(new ModState("BlueyFreeplayMenu"));
 			if (curSelect == 3)

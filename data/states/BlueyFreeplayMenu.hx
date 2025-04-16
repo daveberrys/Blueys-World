@@ -18,7 +18,28 @@ var listen:FlxSprite;
 var blueskied:FlxSprite;
 var doubleDuo:FlxSprite;
 
-function postCreate() {
+var zoomCameraBeat:FlxTween;
+var showListen:Bool = false; // hid the listen thing because it wont work 🫡 (maybe because im stupid)
+
+// THE MOUSE INTERACTION
+var selectedPlay:Bool = false;
+var curSelect:Int = 0;
+var curSongSelect:Int = 0;
+
+// HOVER TWEEN
+var playHoverH:FlxTween; // height
+var playHoverW:FlxTween; // width
+
+var listenHoverH:FlxTween; // height
+var listenHoverW:FlxTween; // width
+
+var blueskiedHoverH:FlxTween; // height
+var blueskiedHoverW:FlxTween; // width
+
+var doubleDuoHoverH:FlxTween; // height
+var doubleDuoHoverW:FlxTween; // width
+
+function create() {
     sky = new FlxBackdrop().loadGraphic(Paths.image("menus/storymenu/BG/sky"));
     sky.velocity.set(40, 0);
     insert(1, sky);
@@ -62,11 +83,15 @@ function postCreate() {
     blackDots2.angle -= 180;
 	add(blackDots2);
 
+    split = new FlxSprite().loadGraphic(Paths.image("menus/freeplaymenu/split"));
+    split.alpha = 0.75;
+    if (!showListen) add(split);
+
     play = new FlxSprite().loadGraphic(Paths.image("menus/freeplaymenu/play"));
-    add(play);
+    if (showListen) add(play);
     
     listen = new FlxSprite().loadGraphic(Paths.image("menus/freeplaymenu/listen"));
-    add(listen);
+    if (showListen) add(listen);
     
     blueskied = new FlxSprite().loadGraphic(Paths.image("menus/freeplaymenu/blueskied"));
     add(blueskied);
@@ -95,4 +120,155 @@ function postCreate() {
 function update(elapsed:Float) {
     if (controls.BACK)
 		FlxG.switchState(new ModState("BlueyMenuState"));
+
+    if (!selectedPlay) {
+        mouseHover();
+        if (showListen) {
+            if (curSelect != 0 && curSongSelect != 0 && FlxG.mouse.justReleased)
+                mouseSelect();
+        } else {
+            if (curSongSelect != 0 && FlxG.mouse.justReleased)
+                mouseSelect();
+        }
+    }
+}
+
+function beatHit(curBeat) {
+	if (!selectedPlay) {
+		if (zoomCameraBeat != null) zoomCameraBeat.cancel();
+		zoomCameraBeat = FlxTween.tween(FlxG.camera, {zoom: 1.01}, 0.001);
+		zoomCameraBeat = FlxTween.tween(FlxG.camera, {zoom: 1}, 1, {ease: FlxEase.expoOut});
+	}
+}
+
+function mouseHover() {
+    var playX = play.x;
+    var playY = play.y;
+    var playWidth = play.width;
+    var playHeight = play.height;
+
+    var listenX = listen.x;
+    var listenY = listen.y;
+    var listenWidth = listen.width;
+    var listenHeight = listen.height;
+
+    var blueskiedX = blueskied.x;
+    var blueskiedY = blueskied.y;
+    var blueskiedWidth = blueskied.width;
+    var blueskiedHeight = blueskied.height;
+ 
+    var doubleDuoX = doubleDuo.x;
+    var doubleDuoY = doubleDuo.y;
+    var doubleDuoWidth = doubleDuo.width;
+    var doubleDuoHeight = doubleDuo.height;
+
+    var mouseX = FlxG.mouse.x;
+	var mouseY = FlxG.mouse.y;
+
+    // CANCELS THE TWEEN
+    if (playHoverW != null) playHoverW.cancel();
+    if (playHoverH != null) playHoverH.cancel();
+
+    if (listenHoverW != null) listenHoverW.cancel();
+    if (listenHoverH != null) listenHoverH.cancel();
+
+    if (blueskiedHoverW != null) blueskiedHoverW.cancel();
+    if (blueskiedHoverH != null) blueskiedHoverH.cancel();
+
+    if (doubleDuoHoverW != null) doubleDuoHoverW.cancel();
+    if (doubleDuoHoverH != null) doubleDuoHoverH.cancel();
+
+    // RESETS IF NOT SELECTED ANYTHING (THE BUTTONS)
+    if (!showListen) curSongSelect = 0;
+    curSelect = 0;
+
+    // THE BUTTON HOVERS
+    // <---- PLAY ---->
+    if (mouseX > playX && mouseX < playX + playWidth &&
+        mouseY > playY && mouseY < playY + playHeight) {
+        playHoverH = FlxTween.tween(play, {"scale.x": 1.1}, 0.1);
+        playHoverW = FlxTween.tween(play, {"scale.y": 1.1}, 0.1);
+
+        curSelect = 1;
+    } else {
+        playHoverH = FlxTween.tween(play, {"scale.x": 1}, 0.1);
+        playHoverW = FlxTween.tween(play, {"scale.y": 1}, 0.1);
+    }
+
+    // <---- LISTEN ---->
+    if (mouseX > listenX && mouseX < listenX + listenWidth &&
+        mouseY > listenY && mouseY < listenY + listenHeight) {
+        listenHoverH = FlxTween.tween(listen, {"scale.x": 1.1}, 0.1);
+        listenHoverW = FlxTween.tween(listen, {"scale.y": 1.1}, 0.1);
+
+        curSelect = 2;
+    } else {
+        listenHoverH = FlxTween.tween(listen, {"scale.x": 1}, 0.1);
+        listenHoverW = FlxTween.tween(listen, {"scale.y": 1}, 0.1);
+    }
+
+    // <---- BLUESKIED ---->
+    if (mouseX > blueskiedX && mouseX < blueskiedX + blueskiedWidth &&
+        mouseY > blueskiedY && mouseY < blueskiedY + blueskiedHeight) {
+        blueskiedHoverH = FlxTween.tween(blueskied, {"scale.x": 1.1}, 0.1);
+        blueskiedHoverW = FlxTween.tween(blueskied, {"scale.y": 1.1}, 0.1);
+
+        curSongSelect = 1;
+    } else {
+        blueskiedHoverH = FlxTween.tween(blueskied, {"scale.x": 1}, 0.1);
+        blueskiedHoverW = FlxTween.tween(blueskied, {"scale.y": 1}, 0.1);
+    }
+
+    // <---- DOUBLE DUO ---->
+    if (mouseX > doubleDuoX && mouseX < doubleDuoX + doubleDuoWidth &&
+        mouseY > doubleDuoY && mouseY < doubleDuoY + doubleDuoHeight) {
+        doubleDuoHoverH = FlxTween.tween(doubleDuo, {"scale.x": 1.1}, 0.1);
+        doubleDuoHoverW = FlxTween.tween(doubleDuo, {"scale.y": 1.1}, 0.1);
+
+        curSongSelect = 2;
+    } else {
+        doubleDuoHoverH = FlxTween.tween(doubleDuo, {"scale.x": 1}, 0.1);
+        doubleDuoHoverW = FlxTween.tween(doubleDuo, {"scale.y": 1}, 0.1);
+    }
+}
+
+function mouseSelect() {
+    if (showListen) {
+        if (curSelect == 1) {
+            selectedPlay = true;
+            FlxG.sound.music.fadeOut(2);
+            FlxG.sound.play(Paths.sound("menu/confirm"));
+            FlxTween.tween(FlxG.camera, {zoom: 10, angle: 180, alpha: 0}, 2, {ease: FlxEase.expoIn});
+            new FlxTimer().start(2, function(tmr:FlxTimer){
+                FlxG.camera.visible = false;
+                if (curSongSelect == 1)
+                    PlayState.loadSong("blueskied", "Blue", false, false);
+                else if (curSongSelect == 2)
+                    PlayState.loadSong("double duo", "Blue", false, false);
+                FlxG.switchState(new PlayState());
+        });
+        } else if (curSelect == 2) {
+            if (curSongSelect == 1)
+                FlxG.sound.playMusic(Paths.inst("blueskied", "Blue"), 0);
+            else if (curSongSelect == 2)
+                FlxG.sound.playMusic(Paths.inst("double duo", "Blue"), 0);
+        }
+    }
+
+    if (!showListen) {
+        if (curSongSelect == 1)
+            PlayState.loadSong("blueskied", "Blue", false, false);
+        else if (curSongSelect == 2)
+            PlayState.loadSong("double duo", "Blue", false, false);
+
+        selectedPlay = true;
+        FlxG.sound.music.fadeOut(2);
+        FlxG.sound.play(Paths.sound("menu/confirm"));
+        FlxTween.tween(FlxG.camera, {zoom: 10, angle: 180, alpha: 0}, 2, {ease: FlxEase.expoIn});
+        new FlxTimer().start(2, function(tmr:FlxTimer){
+            FlxG.camera.visible = false;
+            FlxG.switchState(new PlayState());
+        });
+    }
+
 }
