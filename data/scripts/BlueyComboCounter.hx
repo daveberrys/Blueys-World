@@ -9,6 +9,10 @@ var comboText:FunkinText;
 var noteRating:String;
 var bCombo:Int = 0;
 
+var yLocation = 200;
+
+var PJsekai = true;
+
 function postCreate() {
     comboGroup.visible = false;
 
@@ -41,34 +45,51 @@ function onPlayerHit(event) {
             noteRating = "Aw biscuits...";
             comboText.color = 0xFF808080;
         }
-        bCombo += 1;
+
+        if (bCombo < 0)
+            bCombo = 0;
+
+        // thought it would be funny if my second favourite rhythm game was here lmao
+        if (PJsekai) {
+            if (event.rating == "sick" || event.rating == "good")
+                bCombo += 1;
+            if (event.rating == "bad" || event.rating == "shit")
+                bCombo = 0;
+        } else {
+            bCombo += 1;
+        }
         comboText.text = noteRating + "\n" + bCombo;
+        combo = bCombo;
+        hit();
     }
-    doesFunny();
 }
 function onPlayerMiss(event) {
     if (!event.note.isSustainNote) {
-        bCombo = 0;
+        if (bCombo > 0)
+            bCombo = 0;
+        bCombo -= 1;
+        comboText.color = 0xFFB50000;
         comboText.text = "Missed...\n" + bCombo;
+        combo = bCombo;
+        hit();
     }
-    doesFunny();
 }
 
-function doesFunny() {
+function hit() {
     if (returnComboText != null) returnComboText.cancel();
     if (returnComboText2 != null) returnComboText2.cancel();
     if (returnComboText3 != null) returnComboText3.cancel();
 
     comboText.alpha = 1;
     if (downscroll) {
-        comboText.y = 140 + 10;
-        returnComboText = FlxTween.tween(comboText, {y: 140}, 1, {ease: FlxEase.expoOut});
-        returnComboText2 = FlxTween.tween(comboText, {y: 140 - 100}, 0.5, {ease: FlxEase.expoIn, startDelay: 1});
+        comboText.y = yLocation + 10;
+        returnComboText = FlxTween.tween(comboText, {y: yLocation}, 1, {ease: FlxEase.expoOut});
+        returnComboText2 = FlxTween.tween(comboText, {y: yLocation - 100}, 0.5, {ease: FlxEase.expoIn, startDelay: 1});
         returnComboText3 = FlxTween.tween(comboText, {alpha: 0}, 0.5, {ease: FlxEase.linear, startDelay: 1});
     } else {
-        comboText.y = 140 - 10;
-        returnComboText = FlxTween.tween(comboText, {y: 140}, 1, {ease: FlxEase.expoOut});
-        returnComboText2 = FlxTween.tween(comboText, {y: 140 + 100}, 0.5, {ease: FlxEase.expoIn, startDelay: 1});
+        comboText.y = yLocation - 10;
+        returnComboText = FlxTween.tween(comboText, {y: yLocation}, 1, {ease: FlxEase.expoOut});
+        returnComboText2 = FlxTween.tween(comboText, {y: yLocation + 100}, 0.5, {ease: FlxEase.expoIn, startDelay: 1});
         returnComboText3 = FlxTween.tween(comboText, {alpha: 0}, 0.5, {ease: FlxEase.linear, startDelay: 1});
     }
 }

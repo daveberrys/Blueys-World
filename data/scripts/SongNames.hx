@@ -58,6 +58,7 @@ function postCreate() {
             item.alpha = 0;
             item.borderSize = 2;
             item.camera = camHUD;
+            item.antialiasing = true;
             add(item);
         }
         

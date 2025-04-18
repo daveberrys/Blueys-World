@@ -118,7 +118,7 @@ function create() {
 }
 
 function update(elapsed:Float) {
-    if (controls.BACK)
+    if (controls.BACK && !selectedPlay)
 		FlxG.switchState(new ModState("BlueyMenuState"));
 
     if (!selectedPlay) {
@@ -239,14 +239,21 @@ function mouseSelect() {
             FlxG.sound.music.fadeOut(2);
             FlxG.sound.play(Paths.sound("menu/confirm"));
             FlxTween.tween(FlxG.camera, {zoom: 10, angle: 180, alpha: 0}, 2, {ease: FlxEase.expoIn});
+
+            if (curSongSelect == 1) {
+                PlayState.loadSong("blueskied", "Blue", false, false);
+                FlxTween.tween(blueskied, {x: 1280 / 2 - 120}, 1, {ease: FlxEase.expoOut});
+                FlxTween.tween(doubleDuo, {alpha: 0}, 1);
+            }
+            else if (curSongSelect == 2) {
+                PlayState.loadSong("double duo", "Blue", false, false);
+                FlxTween.tween(doubleDuo, {x: 1280 / 2 - 120}, 1, {ease: FlxEase.expoOut});
+                FlxTween.tween(blueskied, {alpha: 0}, 1);
+            }
             new FlxTimer().start(2, function(tmr:FlxTimer){
                 FlxG.camera.visible = false;
-                if (curSongSelect == 1)
-                    PlayState.loadSong("blueskied", "Blue", false, false);
-                else if (curSongSelect == 2)
-                    PlayState.loadSong("double duo", "Blue", false, false);
                 FlxG.switchState(new PlayState());
-        });
+            });
         } else if (curSelect == 2) {
             if (curSongSelect == 1)
                 FlxG.sound.playMusic(Paths.inst("blueskied", "Blue"), 0);
@@ -256,10 +263,16 @@ function mouseSelect() {
     }
 
     if (!showListen) {
-        if (curSongSelect == 1)
+        if (curSongSelect == 1) {
             PlayState.loadSong("blueskied", "Blue", false, false);
-        else if (curSongSelect == 2)
+            FlxTween.tween(blueskied, {x: 1280 / 2 - 120}, 1, {ease: FlxEase.expoOut});
+            FlxTween.tween(doubleDuo, {alpha: 0}, 1);
+        }
+        else if (curSongSelect == 2) {
             PlayState.loadSong("double duo", "Blue", false, false);
+            FlxTween.tween(doubleDuo, {x: 1280 / 2 - 120}, 1, {ease: FlxEase.expoOut});
+            FlxTween.tween(blueskied, {alpha: 0}, 1);
+        }
 
         selectedPlay = true;
         FlxG.sound.music.fadeOut(2);
@@ -270,5 +283,4 @@ function mouseSelect() {
             FlxG.switchState(new PlayState());
         });
     }
-
 }

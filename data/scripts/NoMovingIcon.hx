@@ -27,11 +27,6 @@ var fakeIconPlayerAlphaTweenH:FlxTween; // HIDE
 var fakeIconOpponentAlphaTweenHT:FlxTimer; // HIDE TIMER
 var fakeIconPlayerAlphaTweenHT:FlxTimer; // HIDE TIMER
 
-// TEXT FROM THIS POINT ON !
-var healthText:FunkinText;
-var healthMath:FlxMath;
-var healthDisplay:Int;
-
 function postCreate() {
 	// Creates the Fake Icon
 	iconP1.visible = false;
@@ -42,18 +37,13 @@ function postCreate() {
 	fakeIconOpponent = new FlxSprite(iconP2.x - 10, iconP2.y - 50).loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconOpponent));
 	fakeIconOpponent.camera = camHUD;
 	fakeIconOpponent.antialiasing = true;
-	add(fakeIconOpponent);
+	insert(16, fakeIconOpponent);
 
 	fakeIconPlayer = new FlxSprite(iconP1.x + 10, iconP1.y - 50).loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconPlayer));
 	fakeIconPlayer.camera = camHUD;
 	fakeIconPlayer.antialiasing = true;
 	fakeIconPlayer.flipX = true;
-	add(fakeIconPlayer);
-
-	healthText = new FunkinText(iconP1.x - 75, iconP1.y - 50, 200, "");
-	healthText.setFormat(Paths.font("bluey.ttf"), 30, 0xFFFFFFFF, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, 0xFF000000);
-	healthText.camera = camHUD;
-	add(healthText);
+	insert(16, fakeIconPlayer);
 
 	new FlxTimer().start(0.5, function(tmr:FlxTimer) {
 		fakeIconOpponentAlphaTween = FlxTween.tween(fakeIconOpponent, {alpha: 0.5}, 0.5);
@@ -79,9 +69,6 @@ function beatHit(curBeat:Int) {
 }
 
 function postUpdate(elapsed:Float) {
-	healthDisplay = (health * 50);
-	healthText.text = "HP: " + Math.round(healthDisplay) + "%";
-
 	// DAD
 	if (health > 1.5) {
 		fakeIconOpponent.loadGraphic(Paths.image("icons/fakeicon/" + varFakeIconOpponent + "-losing"));
