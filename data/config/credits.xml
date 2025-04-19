@@ -1,14 +1,15 @@
 <menu name="Blueys World!" desc="Select this to see all the people who made Bluey's World Mod!">
     <credit name="0 Main Devs" desc=''/>
-    <credit name="Daveberry" desc='Director - Visual Artist - Programmer - Menu Designer - Charter - PC and MOBILE Playtester' icon="daveberry" size="130" url="https://daveberry.netlify.app" portrait="false" color="0x008BFF"/>
+    <credit name="Daveberry" desc='Director - Visual Artist - Programmer - Menu Designer - Charter' icon="daveberry" size="130" url="https://daveberry.netlify.app" portrait="false" color="0x008BFF"/>
     <credit name="BaranMuzu" desc='Programmer' icon="baranmuzu" size="130" url="https://www.youtube.com/@BaranMuzu" portrait="false" color="0xb79275"/>
     <credit name="Kaira Flux" desc='Composer - Charter' icon="kairaflux" size="130" url="https://www.youtube.com/@dinus_game" portrait="false" color="0x00ffaa"/>
     <credit name="SomeGuy" desc='Composer' icon="someguy" size="130" url="https://www.youtube.com/channel/UC5l3zg7-CnL3t1cfZDlzZmw" portrait="false" color="0xffffff"/>
-    <credit name="idoxd" desc='Artist' icon="idoxd" size="130" url="https://linktr.ee/idiotxd" portrait="false" color="0x5656ff"/>
+    <credit name="idoxd" desc='Artist - PC Playtester' icon="idoxd" size="130" url="https://linktr.ee/idiotxd" portrait="false" color="0x5656ff"/>
 
     <credit name="0 Special Thanks" desc=''/>
     <credit name="CNE Discord" desc='To all the Discordians who helped! (ily all there! :3)' icon="specialthank/codenameengine" size="100" url="https://discord.gg/eyTeeEZS7U" portrait="true" color="0xFFFFFF"/>
     <credit name="VideoBot" desc='Optimizing "SongNames.hx". (cool guy tbh)' icon="specialthank/videobot" size="110" url="https://linktr.ee/videobot" portrait="false" color="0x00FFFF"/>
     <credit name="Dev_" desc='Inspired Daveberry (The Director) to make this mod.' icon="specialthank/dev" size="130" url="https://bsky.app/profile/dev-underscore.bsky.social" portrait="false" color="0x7F94D3"/>
     <credit name="SolvionArtisk" desc="Also Inspired Daveberry (The Director) to make this mod - Bluey and Bingo's Chromatics" icon="specialthank/solvionartisk" size="100" url="https://gamebanana.com/members/2051980" portrait="true" color="0xFF98CD"/>
+    <credit name="Luna" desc="Mobile Playtester (she wanted to be a playtester)" icon="specialthank/luna" size="130" url="https://youtube.com/@yoimlunalol" portrait="false" color="0x7E1E1E" />
 </menu>
