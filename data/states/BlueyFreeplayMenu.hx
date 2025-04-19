@@ -17,6 +17,7 @@ var play:FlxSprite;
 var listen:FlxSprite;
 var blueskied:FlxSprite;
 var doubleDuo:FlxSprite;
+#if mobile var back:FlxSprite; #end
 
 var zoomCameraBeat:FlxTween;
 var showListen:Bool = false; // hid the listen thing because it wont work 🫡 (maybe because im stupid)
@@ -32,6 +33,11 @@ var playHoverW:FlxTween; // width
 
 var listenHoverH:FlxTween; // height
 var listenHoverW:FlxTween; // width
+
+#if mobile
+var backHoverH:FlxTween; // height
+var backHoverW:FlxTween; // width
+#end
 
 var blueskiedHoverH:FlxTween; // height
 var blueskiedHoverW:FlxTween; // width
@@ -99,6 +105,13 @@ function create() {
     doubleDuo = new FlxSprite().loadGraphic(Paths.image("menus/freeplaymenu/double duo"));
     add(doubleDuo);
 
+    #if mobile
+    back = new FlxSprite().loadGraphic(Paths.image("mobile/virtualpad/arrow"));
+    back.angle -= 90;
+    back.alpha = 0.5;
+    add(back);
+    #end
+
     // USER INTERFACE POSITIONING :sillycat:
     play.screenCenter(FlxAxes.X);
     play.x += 100;
@@ -120,6 +133,10 @@ function create() {
 function update(elapsed:Float) {
     if (controls.BACK && !selectedPlay)
 		FlxG.switchState(new ModState("BlueyMenuState"));
+    #if mobile
+    else-if (FlxG.mouse.justReleased && curSelect == 3 && !selectedPlay)
+        FlxG.switchState(new ModState("BlueyMenuState"));
+    #end
 
     if (!selectedPlay) {
         mouseHover();
@@ -152,6 +169,13 @@ function mouseHover() {
     var listenWidth = listen.width;
     var listenHeight = listen.height;
 
+    #if mobile
+    var backX = back.x;
+    var backY = back.y;
+    var backWidth = back.width;
+    var backHeight = back.height;
+    #end
+
     var blueskiedX = blueskied.x;
     var blueskiedY = blueskied.y;
     var blueskiedWidth = blueskied.width;
@@ -171,6 +195,11 @@ function mouseHover() {
 
     if (listenHoverW != null) listenHoverW.cancel();
     if (listenHoverH != null) listenHoverH.cancel();
+
+    #if mobile
+    if (backHoverW != null) backHoverW.cancel();
+    if (backHoverH != null) backHoverH.cancel();
+    #end
 
     if (blueskiedHoverW != null) blueskiedHoverW.cancel();
     if (blueskiedHoverH != null) blueskiedHoverH.cancel();
@@ -206,6 +235,20 @@ function mouseHover() {
         listenHoverH = FlxTween.tween(listen, {"scale.x": 1}, 0.1);
         listenHoverW = FlxTween.tween(listen, {"scale.y": 1}, 0.1);
     }
+
+    #if mobile
+    // <---- BACK ---->
+    if (mouseX > backX && mouseX < backX + backWidth &&
+        mouseY > backY && mouseY < backY + backHeight) {
+        backHoverH = FlxTween.tween(back, {"scale.x": 1.1}, 0.1);
+        backHoverW = FlxTween.tween(back, {"scale.y": 1.1}, 0.1);
+
+        curSelect = 3;
+    } else {
+        backHoverH = FlxTween.tween(back, {"scale.x": 1}, 0.1);
+        backHoverW = FlxTween.tween(back, {"scale.y": 1}, 0.1);
+    }
+    #end
 
     // <---- BLUESKIED ---->
     if (mouseX > blueskiedX && mouseX < blueskiedX + blueskiedWidth &&

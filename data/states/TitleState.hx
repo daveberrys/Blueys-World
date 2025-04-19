@@ -16,6 +16,7 @@ var zoomCameraIn:FlxTween;
 var zoomCameraBeat:FlxTween;
 
 function postCreate() {
+    skipIntro();
     titleBg = new FlxSprite(0,0).loadGraphic(Paths.image('menus/titlescreen/titlebg'));
 	insert(1, titleBg);
     
