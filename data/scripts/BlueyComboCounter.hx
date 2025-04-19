@@ -5,13 +5,13 @@ var returnComboText:FlxTween;
 var returnComboText2:FlxTween;
 var returnComboText3:FlxTween;
 
-var comboText:FunkinText;
+public var comboText:FunkinText;
 var noteRating:String;
 var bCombo:Int = 0;
 
 var yLocation = 200;
 
-var PJsekai = true;
+var PJsekai = false;
 
 function postCreate() {
     comboGroup.visible = false;

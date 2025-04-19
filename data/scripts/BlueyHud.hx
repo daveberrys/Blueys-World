@@ -57,7 +57,22 @@ function update(elapsed:Float) {
 }
 
 function onPlayerHit(event) {
-	if(misses == 0)
+    if (!event.note.isSustainNote) {
+        hits += 1;
+
+        if (event.rating == "sick") sick += 1;
+        if (event.rating == "good") good += 1;
+        if (event.rating == "bad") bad += 1;
+        if (event.rating == "shit") shit += 1;
+
+        if (blueyTxtTween != null) blueyTxtTween.cancel();
+        blueyTxt.scale.x = 1.075;
+        blueyTxt.scale.y = 1.075;
+        blueyTxt.screenCenter(FlxAxes.X);
+        blueyTxtTween = FlxTween.tween(blueyTxt.scale, {x: 1, y: 1}, 0.2);
+    }
+
+	if (misses == 0)
 	{
 		if (bad > 0 || shit > 0) ratingFC = 'FC';
 		else if (good > 0) ratingFC = 'GFC';
@@ -67,18 +82,4 @@ function onPlayerHit(event) {
 		if (misses < 10) ratingFC = 'SDCB';
 		else ratingFC = 'Clear';
 	}
-
-    if (event.rating == "sick") sick += 1;
-    if (event.rating == "good") good += 1;
-    if (event.rating == "bad") bad += 1;
-    if (event.rating == "shit") shit += 1;
-    if (!event.note.isSustainNote) {
-        hits += 1;
-
-        if (blueyTxtTween != null) blueyTxtTween.cancel();
-        blueyTxt.scale.x = 1.075;
-        blueyTxt.scale.y = 1.075;
-        blueyTxt.screenCenter(FlxAxes.X);
-        blueyTxtTween = FlxTween.tween(blueyTxt.scale, {x: 1, y: 1}, 0.2);
-    }
 }

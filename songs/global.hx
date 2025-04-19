@@ -1,4 +1,4 @@
-var scripts:String<Array> = [
+var scripts:Array<String> = [
     "BlueyHud",
     "BlueyComboCounter",
     "CamFollow",
@@ -6,12 +6,13 @@ var scripts:String<Array> = [
     "SongNames"
 ];
 
-function postCreate() {
+function postCreate()
     for (script in scripts)
         importScript("data/scripts/" + script + ".hx");
-}
 
-function onDadHit(event) {
+function update()
+    camZooming = false;
+
+function onDadHit(event)
     if (health > 0.1)
         health -= 0.02;
-}

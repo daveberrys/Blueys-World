@@ -1,0 +1,24 @@
+{
+    "params": [
+        {
+            "name": "camGame Zoom? (NOT RECCOMENDED AT ALL WITH CAMERA ZOOM!)",
+            "type": "Bool",
+            "defaultValue": "false"
+        },
+        {
+            "name": "camHUD Zoom?",
+            "type": "Bool",
+            "defaultValue": "false"
+        },
+        {
+            "name": "Zoom Amount",
+            "type": "Float(0, 10, 0.1, 2)",
+            "defaultValue": "0.05"
+        },
+        {
+            "name": "Every Beat",
+            "type": "Int(1, 8, 1)",
+            "defaultValue": 4
+        }
+    ]
+}

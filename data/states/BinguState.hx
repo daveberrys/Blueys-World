@@ -8,5 +8,5 @@ function create() {
 
 function update(elapsed:Float) {
 	if (controls.BACK)
-		FlxG.switchState(new MainMenuState());
+		FlxG.switchState(new ModState("BlueyMenuState"));
 }

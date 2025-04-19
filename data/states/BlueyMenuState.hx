@@ -137,6 +137,8 @@ function postCreate() {
 function update(elapsed:Float) {
 	if (controls.BACK && !selectedSomething)
 		FlxG.switchState(new TitleState());
+	else if (FlxG.keys.justPressed.B)
+		FlxG.switchState(new ModState("BinguState"));
 	else if (FlxG.keys.justPressed.SEVEN && DEBUGGABLE && !selectedSomething) {
 		persistentUpdate = false;
 		persistentDraw = true;
